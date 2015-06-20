@@ -143,8 +143,16 @@ def principale():
 			print "Si riscuote la somma"
 			attivov = 0
 			soldi = soldi - simv
+	if medici < -8:
+		medici = -8
+	if immagine < -5:
+		immagine = -5
+	if turno%2 == 0:
+		print "Per evitare problemi paghi le tasse allo stato"
+		soldi = soldi/1.15
 	print "Settimana", turno
 	soldi = soldi + (pazienti*costocura)
+	soldi = int(soldi)
 	print "Hai" ,soldi, "Ambrogi"
 	print "Hai", sostenitori, "sostenitori"
 	print "Credibilità:", credibilita
@@ -218,7 +226,7 @@ def principale():
 			coe()
 		else:
 			print "Appari a", trasmissioni[random.randint(0,3)], "dove parli della tua storia"
-			if random.raindint(1,10) > 7:
+			if random.randint(1,10) > 7:
 				print "Nessuno ti ha creduto"
 				credibilita = credibilita - 4
 				sostenitori = sostenitori - 4
@@ -235,7 +243,7 @@ def principale():
 			raw_input("Premi invio per continuare")
 			coe()
 	if scelta == 3:
-		print "Scrivi 1 per comperare un medico (3000), 2 per sostenitori (5000) e 3 per politici (10000)"	
+		print "Scrivi 1 per comperare un medico (3000), 2 per sostenitori (5000), 3 per giornalista (7500) e 4 per politici (10000)"	
 		cesta = int(raw_input(":"))
 		if cesta == 1:
 			medici = medici + 1
@@ -244,9 +252,12 @@ def principale():
 			sostenitori = sostenitori + random.randint(1,3)
 			mediatico = mediatico + 1
 			soldi = soldi - 5000
-		if cesta == 3:
+		if cesta == 4:
 			soldi = soldi - 10000
 			politico = politico + random.randint(-1,4)
+		if cesta == 3:
+			soldi = soldi - 7500
+			mediatico = mediatico + 4
 		if random.randint(1,7) > 5:
 			print "Operazione finita male, no problemi con la legge, ma perdiamo immagine"
 			credibilita = credibilita - 3
@@ -264,7 +275,7 @@ def principale():
 			coe()
 		inve = random.randint(0,4)
 		settimane = random.randint(4,12)
-		print "La società", aziendelosche[random.randint(0,5)],"ti offre", investimenti[inve], "a patto di restituire con interessi dopo", settimane, "settimane"
+		print "La società", aziendelosche[random.randint(0,4)],"ti offre", investimenti[inve], "a patto di restituire con interessi dopo", settimane, "settimane"
 		accettazione = raw_input("Scrivi si per accettare:")
 		if accettazione == "si":
 			simv = pagamento[inve]
