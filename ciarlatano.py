@@ -56,12 +56,54 @@ def coe():
 	global mediatico
 	global sostenitori
 	poss = random.randint(1,10)
+	os.system("clear")
+	print "Notizie"
 	if poss == 1:
 		print "Un tuo medico ha trovato una parola figa per l'acqua che inietti ai bambini. Boom di richieste in TV e della cura"
 		pazienti = pazienti + random.randint(3,7)
 		mediatico = mediatico + 5
 	if poss == 2:
-		
+		print "Ops. Inietti acido fenico al posto dell'acqua. Basta anfetamine!. Molti pazienti muoiono,e ti becchi una bella denuncia"
+		pazienti = int(pazienti*0.80)
+		crimine = crimine + 2
+		soldi = soldi - 3500
+		immagine = immagine - 4
+	if poss == 3:
+		print "Una specie di caprone eletto sindaco dichiara che il tuo metodo funziona. E nemmeno l'hai pagato!"
+		politico = politico + 6
+		sostenitori = sostenitori + 2
+		pazienti = pazienti + 1
+	if poss == 4:
+		print "Salvo Per Favore ti ha sbufalato nelle sue conferenze assieme a Roberto Vicentino: Annunci querela, che non farai mai, ma perdi sostegno"
+		sostenitori = sostenitori - 2
+		mediatico = mediatico + 2
+		medici = medici - 2
+	if poss == 5:
+		print "Il massimo esperto di costolette, da te spacciato per megaesperto di malattie, certifica il tuo metodo \n I medici ti schifano, ma il popolo bue no!"
+		medici = medici - 3
+		sostenitori = sostenitori + 4
+		pazienti = pazienti + 1
+	if poss == 6:
+		print "L'ospedale di Fusello ti ammette a praticare il tuo metodo: Prezzo dimezzato ma client... ehm, pazienti raddoppiati"
+		pazienti = pazienti*2
+		costocura= costocura/2
+	if poss == 7:
+		print "Una farmaceutica si offre di aiutarti, tu accetti, per poi lamentarti del boicottaggio delle case farmaceutiche"
+		soldi = soldi*1.5
+	if poss == 8:
+		print "Sputi in faccia ad un debunker. I complottisti apprezzano, ma la tua fedina penale no"
+		sostenitori = sostenitori + 3
+		crimine = crimine + 1
+	if poss == 9:
+		print "Un tuo amico in polizia 'trucca' la tua fedina penale"
+		crimine = crimine -1
+	if poss == 10:
+		print "Le foto di bambini malati prese da Internet hanno impietosito i telespettatori. Soldini in arrivo!"
+		pazienti = pazienti + 5
+		sostenitori = sostenitori + 2
+		medici = medici - 1
+	raw_input("Premi invio per continuare")
+	principale()
 def principale():
 	global turno
 	global metodo
@@ -82,6 +124,15 @@ def principale():
 	global mediatico
 	global sostenitori
 	os.system("clear")
+	if mediatico < 0:
+		mediatico = 0
+	if crimine < 0:
+		crimine = 0
+	if crimine > 15 and politico < 10:
+		print "Buongiorno Polizia, lei è in arresto per ciarlataneria. \n Vieni condannato a 3 anni per ciarlataneria"
+		exit()
+	if crimine > 20 and politico > 10:
+		print "Polizia, le sequestro il laboratorio. \n Grazie alle tue amicizie prendi 1 anno con la condizionale. Ma soldi pochi..."
 	if turno%10 == 0:
 		costocura = costocura*2
 	if pazienti < 0:
