@@ -10,6 +10,7 @@ mediatico = 0
 pazienti = 1
 costocura = 500
 sostenitori = 20
+patteg = 0
 soldi = 10000
 crimine = 0
 politico = 0
@@ -41,6 +42,7 @@ def coe():
 	global metodo
 	global credibilita
 	global sostenitori
+	global patteg
 	global politico
 	global scelta
 	global costocura
@@ -88,8 +90,21 @@ def coe():
 		pazienti = pazienti*2
 		costocura= costocura/2
 	if poss == 7:
-		print "Una farmaceutica si offre di aiutarti, tu accetti, per poi lamentarti del boicottaggio delle case farmaceutiche"
-		soldi = soldi*1.5
+		if turno%2 == 0:
+			print "Una farmaceutica si offre di aiutarti, tu accetti, per poi lamentarti del boicottaggio delle case farmaceutiche"
+			soldi = soldi*1.3
+		else:
+			print "Un tuo medico viene beccato assieme ad un altri ciarlatano. Che vuoi fare?"
+			celta = raw_input("1) Attacca pubblicamente\n 2) Sostieni pubblicamente\n 3) altro\n >")
+			if celta == "1":
+				print "Medici approvano, sostenitori meno"
+				medici = medici + 2
+				sostenitori = sostenitori - 1
+			if celta == "2":
+				print "Sostenitori felici, politico meno"
+				soldi = soldi - 1000
+				sostenitori = sostenitori + 2
+				politico = politico - 1
 	if poss == 8:
 		print "Sputi in faccia ad un debunker. I complottisti apprezzano, ma la tua fedina penale no"
 		sostenitori = sostenitori + 3
@@ -118,6 +133,7 @@ def principale():
 	global termv
 	global attivov
 	global soldi
+	global patteg
 	global crimine
 	global medici
 	global nome
@@ -150,6 +166,15 @@ def principale():
 	if turno%2 == 0:
 		print "Per evitare problemi paghi le tasse allo stato"
 		soldi = soldi/1.15
+	if crimine > 10:
+		patteg = patteg + 1
+	if patteg > 4:
+		patteg = 0
+		print "Sei stato condannato per un reato minore legato alla tua attività"
+		soldi = soldi*0.65
+		sostenitori = sostenitori- 10
+		immagine = immagine - 5
+		medici = medici - 5
 	print "Settimana", turno
 	soldi = soldi + (pazienti*costocura)
 	soldi = int(soldi)
@@ -159,7 +184,7 @@ def principale():
 	print "Potere mediatico;", mediatico
 	print "Sostegno medico:", medici
 	print "Immagine:", immagine
-	print "La tua influenza sui politici è", politico
+	print "La tua influenza sui politico è", politico
 	print "Pazienti", pazienti, "\t Costo Cura:", costocura
 	pazienti = pazienti + random.randint(-3,3)
 	turno = turno + 1
@@ -243,7 +268,7 @@ def principale():
 			raw_input("Premi invio per continuare")
 			coe()
 	if scelta == 3:
-		print "Scrivi 1 per comperare un medico (3000), 2 per sostenitori (5000), 3 per giornalista (7500) e 4 per politici (10000)"	
+		print "Scrivi 1 per comperare un medico (3000), 2 per sostenitori (5000), 3 per giornalista (7500) e 4 per politico (10000)"	
 		cesta = int(raw_input(":"))
 		if cesta == 1:
 			medici = medici + 1
@@ -282,13 +307,14 @@ def principale():
 			termv = settimane
 			soldi = soldi + investimenti[inve]
 			attivov = 1
+			sostenitori = sostenitori + 2
 		coe()
 	if scelta == 5:
 		k = danespe[random.randint(4,8)]
 		print "Fai una ospitata televisiva e guadagni", k
 		soldi = soldi + k
 		raw_input("premi invio per continuare")
-		pazienti = pazienti + random.randint(0,1)
+		pazienti = pazienti + random.randint(-1,1)
 		coe()
 	coe()
 principale()
