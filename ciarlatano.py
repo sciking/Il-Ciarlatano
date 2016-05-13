@@ -30,7 +30,7 @@ while nome == "":
 	nome = raw_input("Inserisci il tuo nome, grazie:")
 print """Benvenuto %s, il tuo obiettivo è uno in questa piccola nazione,
 lo Stato di Milano:
-Fare i danè. Come? Semplice, truffando l'intero paese! Corrompi, compra
+Fare i dané. Come? Semplice, truffando l'intero paese! Corrompi, compra
 e appari in TV in modo da avere sostegno. La scienza e i giudici non sono
 corrompibili, ma con i tuoi guadagni potrai presto uscire di galera.
 Oppure non entrarvi nemmeno.
